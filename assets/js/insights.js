@@ -1,10 +1,10 @@
 // Insights page — four D3 charts driven by TV_DATA (assets/js/data.js)
 
 const TECH_COLOR = {
-  "LCD": "#9C8B6F",
-  "LCD (LED)": "#3FA34D",
-  "OLED": "#2D6CDF",
-  "Plasma": "#D64545"
+  "LCD": "#71717A",
+  "LCD (LED)": "#18181B",
+  "OLED": "#2563EB",
+  "Plasma": "#E11D48"
 };
 
 const tooltip = document.getElementById("tooltip");
@@ -54,8 +54,9 @@ function onResize(fn) {
     svg.selectAll("*").remove();
 
     const width = svgEl.parentElement.clientWidth;
-    const height = 360;
-    const margin = { top: 24, right: 20, bottom: 50, left: 56 };
+    const isMobile = width < 480;
+    const height = isMobile ? 320 : 360;
+    const margin = { top: 24, right: isMobile ? 12 : 20, bottom: 50, left: isMobile ? 50 : 64 };
     svg.attr("viewBox", `0 0 ${width} ${height}`);
 
     const innerW = width - margin.left - margin.right;
@@ -180,6 +181,9 @@ function onResize(fn) {
     svgEl.style.removeProperty("--zoom-k");
 
     const width = svgEl.parentElement.clientWidth;
+    const isMobile = width < 480;
+    const height = isMobile ? 360 : 440;
+    const margin = { top: 16, right: isMobile ? 14 : 22, bottom: 44, left: isMobile ? 68 : 82 };
     svg.attr("viewBox", `0 0 ${width} ${height}`);
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
@@ -217,7 +221,7 @@ function onResize(fn) {
       .attr("text-anchor", "middle")
       .attr("transform", `rotate(-90)`)
       .attr("x", -(margin.top + innerH / 2))
-      .attr("y", 14)
+      .attr("y", isMobile ? 18 : 22)
       .style("font-size", "0.82rem")
       .text("Yearly energy consumption (kWh)");
 
@@ -292,8 +296,14 @@ function onResize(fn) {
     const ordered = currentOrder();
 
     const width = svgEl.parentElement.clientWidth;
+    const isMobile = width < 520;
     const rowH = 42;
-    const margin = { top: 10, right: 60, bottom: 30, left: 160 };
+    const margin = {
+      top: 10,
+      right: isMobile ? 32 : 54,
+      bottom: 30,
+      left: isMobile ? 135 : 190
+    };
     const innerH = ordered.length * rowH;
     const height = innerH + margin.top + margin.bottom;
     svg.attr("viewBox", `0 0 ${width} ${height}`);
@@ -308,6 +318,7 @@ function onResize(fn) {
       g = svg.append("g").attr("class", "brand-g").attr("transform", `translate(${margin.left},${margin.top})`);
       g.append("g").attr("class", "axis x-axis").attr("transform", `translate(0,${innerH})`);
     } else {
+      g.attr("transform", `translate(${margin.left},${margin.top})`);
       g.select(".x-axis").attr("transform", `translate(0,${innerH})`);
     }
     g.select(".x-axis").transition().duration(400).call(d3.axisBottom(x).ticks(5));
@@ -321,11 +332,11 @@ function onResize(fn) {
 
     rowsEnter.append("text")
       .attr("class", "lollipop-label")
-      .attr("x", -12)
+      .attr("x", -10)
       .attr("y", y.bandwidth() / 2)
       .attr("text-anchor", "end")
       .attr("dominant-baseline", "middle")
-      .text(d => d.brand.length > 18 ? d.brand.slice(0, 17) + "\u2026" : titleCase(d.brand));
+      .text(d => titleCase(d.brand));
 
     rowsEnter.append("line")
       .attr("class", "lollipop-line")
@@ -348,6 +359,9 @@ function onResize(fn) {
 
     merged.transition().duration(500)
       .attr("transform", d => `translate(0,${y(d.brand)})`);
+
+    merged.select(".lollipop-label")
+      .text(d => titleCase(d.brand));
 
     merged.select("line")
       .transition().duration(500)
@@ -420,8 +434,9 @@ function onResize(fn) {
     if (!data.length) return;
 
     const width = svgEl.parentElement.clientWidth;
-    const height = 360;
-    const margin = { top: 20, right: 24, bottom: 42, left: 54 };
+    const isMobile = width < 480;
+    const height = isMobile ? 310 : 360;
+    const margin = { top: 20, right: isMobile ? 16 : 24, bottom: 42, left: isMobile ? 56 : 66 };
     svg.attr("viewBox", `0 0 ${width} ${height}`);
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
@@ -480,7 +495,7 @@ function onResize(fn) {
       .attr("text-anchor", "middle")
       .attr("transform", "rotate(-90)")
       .attr("x", -(margin.top + innerH / 2))
-      .attr("y", 14)
+      .attr("y", isMobile ? 16 : 20)
       .style("font-size", "0.82rem")
       .text("Avg active-mode power (W)");
   }

@@ -1,107 +1,384 @@
-/* ===== Insights page — extends style.css with data-viz tokens ===== */
+/* ==========================================================================
+   INSIGHTS PAGE STYLING (MINIMALIST & ELEGANT)
+   Data-visualisation styling for D3.js charts
+   ========================================================================== */
+
 :root {
-  --tech-lcd: #9C8B6F;
-  --tech-led: #3FA34D;
-  --tech-oled: #2D6CDF;
-  --tech-plasma: #D64545;
-  --ink: #3A2D1B;
-  --card-border: #EADFB4;
+  --tech-lcd: #71717A;
+  --tech-led: #18181B;
+  --tech-oled: #2563EB;
+  --tech-plasma: #E11D48;
 }
 
-.insights-container { max-width: 1040px; }
-.insights-hero p { max-width: 62ch; }
+.insights-container {
+  max-width: 1040px;
+}
 
+.insights-hero p {
+  max-width: 68ch;
+}
+
+/* Chart Cards */
 .chart-card {
-  background: #fff;
-  border: 2px solid var(--card-border);
-  border-radius: 10px;
-  padding: 22px 24px 20px;
-  margin-bottom: 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 36px;
+  box-shadow: var(--shadow-sm);
 }
 
-.chart-head h2 { margin: 0 0 6px; font-size: 1.3rem; }
-.chart-head p { margin: 0 0 14px; max-width: 70ch; color: var(--brown-dark); opacity: 0.85; }
+.chart-head h2 {
+  margin: 0 0 8px;
+  font-size: 1.45rem;
+}
 
+.chart-head p {
+  margin: 0 0 20px;
+  max-width: 72ch;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Controls */
 .chart-controls {
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
 }
-.chart-controls label { font-weight: 600; }
-.chart-count { font-size: 0.85rem; color: var(--brown); opacity: 0.75; margin-left: 4px; }
+
+.chart-controls label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-black);
+  margin-bottom: 0;
+}
+
+.chart-count {
+  font-size: 0.84rem;
+  color: var(--color-light-muted);
+  font-variant-numeric: tabular-nums;
+  margin-left: 6px;
+}
+
 .chart-controls select {
-  padding: 8px 10px; border: 2px solid var(--brown); border-radius: 6px;
-  background: var(--cream-light); font-family: inherit; font-size: 0.95rem;
+  padding: 8px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-black);
+  cursor: pointer;
 }
 
+/* Filter Chips / Metric Toggle */
 .chip {
-  padding: 7px 16px; border-radius: 999px; border: 2px solid var(--brown);
-  background: #fff; color: var(--brown-dark); font-weight: 600; font-family: inherit;
-  cursor: pointer; font-size: 0.9rem; transition: background-color 0.2s, color 0.2s;
+  padding: 7px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  color: var(--color-muted);
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  font-size: 0.88rem;
+  letter-spacing: -0.01em;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.chip:hover { background: var(--cream); }
-.chip.active { background: var(--orange); color: #fff; border-color: var(--orange-dark); }
 
-.chart-wrap { width: 100%; overflow-x: auto; }
-.chart-wrap svg { width: 100%; height: auto; display: block; }
+.chip:hover {
+  background: var(--bg-subtle);
+  color: var(--color-black);
+  border-color: #D4D4D8;
+}
 
-.chart-footnote { margin: 10px 0 0; font-size: 0.88rem; color: var(--brown); opacity: 0.8; }
+.chip.active {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
 
-/* ===== legend ===== */
-.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; font-size: 0.88rem; }
-.legend-item { display: flex; align-items: center; gap: 6px; }
-.legend-swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+/* Chart Canvas Wrap */
+.chart-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
 
-/* ===== tooltip ===== */
+.chart-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-footnote {
+  margin: 16px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-light-muted);
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Modern D3 Tooltip */
 .d3-tooltip {
-  position: fixed; pointer-events: none; z-index: 50;
-  background: var(--ink); color: #fff; padding: 8px 12px; border-radius: 6px;
-  font-size: 0.85rem; line-height: 1.4; max-width: 220px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  background: rgba(9, 9, 11, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FAFAFA;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  max-width: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-sans);
 }
-.d3-tooltip strong { color: var(--cream); }
 
-/* ===== axes ===== */
-.axis path, .axis line { stroke: var(--brown); opacity: 0.4; }
-.axis text { fill: var(--brown-dark); font-size: 0.78rem; font-family: inherit; }
-.grid line { stroke: var(--brown); opacity: 0.08; }
-.grid path { display: none; }
+.d3-tooltip strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
 
-/* ===== bar chart ===== */
-.bar { fill: var(--orange); }
-.bar:hover { fill: var(--orange-dark); }
-.bar-value-label { font-size: 0.78rem; fill: var(--brown-dark); font-weight: 600; }
+/* Axes & Grids */
+.axis path, .axis line {
+  stroke: var(--border-default);
+  opacity: 0.9;
+}
 
-/* ===== scatter ===== */
+.axis text {
+  fill: var(--color-muted);
+  font-size: 0.78rem;
+  font-family: var(--font-sans);
+}
+
+.grid line {
+  stroke: #09090B;
+  opacity: 0.05;
+  stroke-dasharray: 2 3;
+}
+
+.grid path {
+  display: none;
+}
+
+/* Bar Chart */
+.bar {
+  transition: opacity 0.2s ease;
+  rx: 3px;
+}
+
+.bar:hover {
+  opacity: 0.85;
+}
+
+.bar-value-label {
+  font-size: 0.82rem;
+  fill: var(--color-black);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-sans);
+}
+
+/* Scatter Plot */
 .scatter-dot {
-  stroke: #fff; stroke-width: 0.5; opacity: 0.68; cursor: pointer;
-  /* Radius stays visually constant while zoomed: the browser recomputes this
-     for all points in one paint step, instead of JS touching each node. */
+  stroke: #FFFFFF;
+  stroke-width: 0.5;
+  opacity: 0.72;
+  cursor: pointer;
   r: calc(3.4px / var(--zoom-k, 1));
+  transition: opacity 0.15s ease;
 }
-.scatter-dot:hover { opacity: 1; stroke: var(--ink); stroke-width: 1.5; }
-.zoom-rect { cursor: grab; }
-.zoom-rect:active { cursor: grabbing; }
 
-/* ===== lollipop ===== */
-.lollipop-line { stroke: var(--brown); stroke-width: 2; opacity: 0.6; }
-.lollipop-dot { fill: var(--orange); stroke: var(--orange-dark); stroke-width: 1.5; cursor: pointer; }
-.lollipop-dot.selected { fill: var(--brown); stroke: var(--ink); }
-.lollipop-label { font-size: 0.85rem; fill: var(--brown-dark); font-weight: 600; }
-.lollipop-value { font-size: 0.8rem; fill: var(--brown); font-weight: 700; }
+.scatter-dot:hover {
+  opacity: 1;
+  stroke: var(--color-black);
+  stroke-width: 2;
+}
+
+.zoom-rect {
+  cursor: grab;
+}
+
+.zoom-rect:active {
+  cursor: grabbing;
+}
+
+/* Lollipop Chart */
+.lollipop-line {
+  stroke: var(--border-default);
+  stroke-width: 2;
+}
+
+.lollipop-dot {
+  fill: var(--color-black);
+  stroke: var(--color-black);
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: r 0.2s ease, fill 0.2s ease;
+}
+
+.lollipop-dot:hover {
+  r: 8.5;
+}
+
+.lollipop-dot.selected {
+  fill: var(--color-black);
+  stroke: var(--color-black);
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.35));
+}
+
+.lollipop-label {
+  font-size: 0.88rem;
+  fill: var(--color-black);
+  font-weight: 500;
+  font-family: var(--font-sans);
+}
+
+.lollipop-value {
+  font-size: 0.82rem;
+  fill: var(--color-muted);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-sans);
+}
 
 .brand-detail {
-  margin-top: 16px; padding: 14px 18px; background: var(--cream-light);
-  border-left: 6px solid var(--orange); border-radius: 8px;
+  margin-top: 20px;
+  padding: 18px 22px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
 }
-.brand-detail h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--brown); }
-.brand-detail ul { margin: 0; padding-left: 20px; }
-.brand-detail li { margin-bottom: 2px; }
 
-/* ===== line chart ===== */
-.trend-line { fill: none; stroke: var(--orange-dark); stroke-width: 2.5; }
-.trend-dot { fill: var(--orange-dark); stroke: #fff; stroke-width: 1.5; cursor: pointer; }
-.trend-dot:hover { fill: var(--brown); }
+.brand-detail h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: var(--color-black);
+  font-weight: 600;
+}
 
-@media (max-width: 600px) {
-  .chart-card { padding: 16px 14px; }
+.brand-detail ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.brand-detail li {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Line Chart */
+.trend-line {
+  fill: none;
+  stroke: var(--color-black);
+  stroke-width: 2.2;
+}
+
+.trend-dot {
+  fill: #FFFFFF;
+  stroke: var(--color-black);
+  stroke-width: 2.5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trend-dot:hover {
+  fill: var(--color-black);
+  r: 6;
+}
+
+@media (max-width: 768px) {
+  .chart-card {
+    padding: 24px 20px;
+    margin-bottom: 28px;
+  }
+  .chart-head h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .chart-card {
+    padding: 18px 14px;
+    border-radius: var(--radius-md);
+    margin-bottom: 22px;
+  }
+  .chart-head h2 {
+    font-size: 1.15rem;
+  }
+  .chart-head p {
+    font-size: 0.88rem;
+    margin-bottom: 14px;
+  }
+  .chart-controls {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .chart-controls label {
+    font-size: 0.84rem;
+  }
+  .chart-controls select {
+    width: 100%;
+    font-size: 0.88rem;
+    padding: 8px 10px;
+  }
+  .chip {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+  }
+  .legend {
+    gap: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .chart-footnote {
+    font-size: 0.8rem;
+    margin-top: 12px;
+  }
+  .brand-detail {
+    padding: 14px 14px;
+  }
+  .brand-detail h3 {
+    font-size: 0.92rem;
+  }
+  .brand-detail li {
+    font-size: 0.84rem;
+  }
+  .lollipop-label {
+    font-size: 0.78rem;
+  }
+  #scatter-reset {
+    width: 100%;
+  }
 }
