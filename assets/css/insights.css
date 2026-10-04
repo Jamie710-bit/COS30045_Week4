@@ -1,0 +1,107 @@
+/* ===== Insights page — extends style.css with data-viz tokens ===== */
+:root {
+  --tech-lcd: #9C8B6F;
+  --tech-led: #3FA34D;
+  --tech-oled: #2D6CDF;
+  --tech-plasma: #D64545;
+  --ink: #3A2D1B;
+  --card-border: #EADFB4;
+}
+
+.insights-container { max-width: 1040px; }
+.insights-hero p { max-width: 62ch; }
+
+.chart-card {
+  background: #fff;
+  border: 2px solid var(--card-border);
+  border-radius: 10px;
+  padding: 22px 24px 20px;
+  margin-bottom: 28px;
+}
+
+.chart-head h2 { margin: 0 0 6px; font-size: 1.3rem; }
+.chart-head p { margin: 0 0 14px; max-width: 70ch; color: var(--brown-dark); opacity: 0.85; }
+
+.chart-controls {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.chart-controls label { font-weight: 600; }
+.chart-count { font-size: 0.85rem; color: var(--brown); opacity: 0.75; margin-left: 4px; }
+.chart-controls select {
+  padding: 8px 10px; border: 2px solid var(--brown); border-radius: 6px;
+  background: var(--cream-light); font-family: inherit; font-size: 0.95rem;
+}
+
+.chip {
+  padding: 7px 16px; border-radius: 999px; border: 2px solid var(--brown);
+  background: #fff; color: var(--brown-dark); font-weight: 600; font-family: inherit;
+  cursor: pointer; font-size: 0.9rem; transition: background-color 0.2s, color 0.2s;
+}
+.chip:hover { background: var(--cream); }
+.chip.active { background: var(--orange); color: #fff; border-color: var(--orange-dark); }
+
+.chart-wrap { width: 100%; overflow-x: auto; }
+.chart-wrap svg { width: 100%; height: auto; display: block; }
+
+.chart-footnote { margin: 10px 0 0; font-size: 0.88rem; color: var(--brown); opacity: 0.8; }
+
+/* ===== legend ===== */
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; font-size: 0.88rem; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+/* ===== tooltip ===== */
+.d3-tooltip {
+  position: fixed; pointer-events: none; z-index: 50;
+  background: var(--ink); color: #fff; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.85rem; line-height: 1.4; max-width: 220px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+.d3-tooltip strong { color: var(--cream); }
+
+/* ===== axes ===== */
+.axis path, .axis line { stroke: var(--brown); opacity: 0.4; }
+.axis text { fill: var(--brown-dark); font-size: 0.78rem; font-family: inherit; }
+.grid line { stroke: var(--brown); opacity: 0.08; }
+.grid path { display: none; }
+
+/* ===== bar chart ===== */
+.bar { fill: var(--orange); }
+.bar:hover { fill: var(--orange-dark); }
+.bar-value-label { font-size: 0.78rem; fill: var(--brown-dark); font-weight: 600; }
+
+/* ===== scatter ===== */
+.scatter-dot {
+  stroke: #fff; stroke-width: 0.5; opacity: 0.68; cursor: pointer;
+  /* Radius stays visually constant while zoomed: the browser recomputes this
+     for all points in one paint step, instead of JS touching each node. */
+  r: calc(3.4px / var(--zoom-k, 1));
+}
+.scatter-dot:hover { opacity: 1; stroke: var(--ink); stroke-width: 1.5; }
+.zoom-rect { cursor: grab; }
+.zoom-rect:active { cursor: grabbing; }
+
+/* ===== lollipop ===== */
+.lollipop-line { stroke: var(--brown); stroke-width: 2; opacity: 0.6; }
+.lollipop-dot { fill: var(--orange); stroke: var(--orange-dark); stroke-width: 1.5; cursor: pointer; }
+.lollipop-dot.selected { fill: var(--brown); stroke: var(--ink); }
+.lollipop-label { font-size: 0.85rem; fill: var(--brown-dark); font-weight: 600; }
+.lollipop-value { font-size: 0.8rem; fill: var(--brown); font-weight: 700; }
+
+.brand-detail {
+  margin-top: 16px; padding: 14px 18px; background: var(--cream-light);
+  border-left: 6px solid var(--orange); border-radius: 8px;
+}
+.brand-detail h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--brown); }
+.brand-detail ul { margin: 0; padding-left: 20px; }
+.brand-detail li { margin-bottom: 2px; }
+
+/* ===== line chart ===== */
+.trend-line { fill: none; stroke: var(--orange-dark); stroke-width: 2.5; }
+.trend-dot { fill: var(--orange-dark); stroke: #fff; stroke-width: 1.5; cursor: pointer; }
+.trend-dot:hover { fill: var(--brown); }
+
+@media (max-width: 600px) {
+  .chart-card { padding: 16px 14px; }
+}

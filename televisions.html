@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Televisions | Appliance Energy Consumption Website</title>
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="logo-link" href="index.html" aria-label="Go to Home page">
+        <img src="assets/img/logo.svg" alt="Power logo" class="logo">
+        <span class="site-name">Appliance Energy</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="televisions.html" class="active" aria-current="page">Televisions</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="insights.html">Insights</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Televisions</h1>
+      <p>Televisions are one of the most common appliances in Australian homes. Use the calculator below to estimate how much energy and money a TV uses. <em>(Placeholder content.)</em></p>
+    </section>
+
+    <section class="calculator" aria-labelledby="calc-title">
+      <h2 id="calc-title">Appliance Energy Calculator</h2>
+      <p class="hint">Choose a TV model (or enter your own wattage), then enter your usage and electricity price.</p>
+
+      <form id="calc-form" novalidate>
+        <div class="form-row">
+          <label for="model">TV model (example data)</label>
+          <select id="model" name="model">
+            <option value="">Custom wattage</option>
+            <option value="60">Mini LED 32" - 60 W</option>
+            <option value="100">LED 43" - 100 W</option>
+            <option value="150">OLED 55" - 150 W</option>
+            <option value="220">QLED 65" - 220 W</option>
+            <option value="300">QLED 75" - 300 W</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="watts">Power usage (watts)</label>
+          <input type="number" id="watts" name="watts" min="1" step="any" placeholder="e.g. 100">
+          <span class="error" id="watts-error" role="alert"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="hours">Average hours of use per day</label>
+          <input type="number" id="hours" name="hours" min="0" max="24" step="any" placeholder="e.g. 5">
+          <span class="error" id="hours-error" role="alert"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="price">Electricity price (cents per kWh)</label>
+          <input type="number" id="price" name="price" min="0" step="any" value="30">
+          <span class="error" id="price-error" role="alert"></span>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Calculate</button>
+          <button type="reset" class="btn btn-secondary" id="reset-btn">Reset</button>
+        </div>
+      </form>
+
+      <div id="results" class="results" aria-live="polite">
+        <h3>Results</h3>
+        <p class="placeholder">Enter your values and press Calculate.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> Tung. All rights reserved.</p>
+    <p class="ai-note">Generative AI acknowledgement: this website was built with the assistance of Claude (Anthropic). See README.md for details.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/calculator.js"></script>
+</body>
+</html>
