@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,10 +8,13 @@
   <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/insights.css">
 </head>
+
 <body>
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
@@ -31,10 +35,11 @@
 
     <section class="hero insights-hero">
       <h1>TV Energy Insights</h1>
-      <p>Four views into the cleaned historical dataset of Australian televisions &mdash; comparing technologies, screen sizes, brands and twelve years of efficiency gains.</p>
+      <p>Four views into the cleaned historical dataset of Australian televisions &mdash; comparing technologies, screen
+        sizes, brands and fifteen years (2012&ndash;2026) of registration data.</p>
     </section>
 
-    <!-- 1. Grouped / toggle bar chart -->
+    <!-- Grouped / toggle bar chart -->
     <section class="chart-card" id="section-bar" aria-labelledby="bar-title">
       <div class="chart-head">
         <h2 id="bar-title">Energy Efficiency by Screen Technology</h2>
@@ -47,14 +52,16 @@
       <div class="chart-wrap">
         <svg id="chart-bar"></svg>
       </div>
-      <p class="chart-footnote">Hover a bar for the exact figure. Higher stars and lower CEC both mean better efficiency.</p>
+      <p class="chart-footnote">Hover a bar for the exact figure. Higher stars and lower CEC both mean better
+        efficiency.</p>
     </section>
 
-    <!-- 2. Scatter plot -->
+    <!-- Scatter plot -->
     <section class="chart-card" id="section-scatter" aria-labelledby="scatter-title">
       <div class="chart-head">
         <h2 id="scatter-title">The Big-Screen Trap: Size vs. Power Consumption</h2>
-        <p>Every model in the dataset, screen size against yearly energy consumption. Scroll or pinch to zoom, drag to pan.</p>
+        <p>Every model in the dataset, screen size (diagonal, in cm) against yearly energy consumption. Scroll or pinch
+          to zoom, drag to pan.</p>
       </div>
       <div class="chart-controls">
         <label for="scatter-tech-select">Category:</label>
@@ -75,11 +82,12 @@
       <button type="button" class="btn btn-secondary" id="scatter-reset">Reset zoom</button>
     </section>
 
-    <!-- 3. Lollipop chart -->
+    <!-- Lollipop chart -->
     <section class="chart-card" id="section-brand" aria-labelledby="brand-title">
       <div class="chart-head">
         <h2 id="brand-title">Top Brand Energy Efficiency Ranking</h2>
-        <p>Average energy star rating among the eight best-selling TV brands in the dataset.</p>
+        <p>Average energy star rating among the eight best-represented TV brands in the dataset (ranked by number of
+          registered models).</p>
       </div>
       <div class="chart-controls">
         <button type="button" class="btn btn-secondary" id="brand-sort-toggle">Sort: High &rarr; Low</button>
@@ -91,11 +99,11 @@
       <div id="brand-detail" class="brand-detail" hidden></div>
     </section>
 
-    <!-- 4. Line chart -->
+    <!-- Line chart -->
     <section class="chart-card" id="section-line" aria-labelledby="line-title">
       <div class="chart-head">
         <h2 id="line-title">The Energy Race Over Time (2012&ndash;2026)</h2>
-        <p>Average power draw in active mode, by model release year.</p>
+        <p>Average power draw in active mode, by registration expiry year of each model.</p>
       </div>
       <div class="chart-controls">
         <label for="line-select">Show:</label>
@@ -110,14 +118,16 @@
       <div class="chart-wrap">
         <svg id="chart-line"></svg>
       </div>
-      <p class="chart-footnote">Hover a point on the line for the exact year and wattage.</p>
+      <p class="chart-footnote">Hover a point on the line for the exact year and wattage. 2026 is a partial year (few
+        models), and years with no data for a technology are skipped.</p>
     </section>
 
   </main>
 
   <footer class="site-footer">
     <p>&copy; <span id="year">2026</span> Tung. All rights reserved.</p>
-    <p class="ai-note">Generative AI acknowledgement: this website was built with the assistance of Claude (Anthropic). See README.md for details.</p>
+    <p class="ai-note">Generative AI acknowledgement: this website was built with the assistance of Claude (Anthropic).
+      See README.md for details.</p>
   </footer>
 
   <div id="tooltip" class="d3-tooltip" role="tooltip" hidden></div>
@@ -127,4 +137,5 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/insights.js"></script>
 </body>
+
 </html>

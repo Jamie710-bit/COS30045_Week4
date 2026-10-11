@@ -1,5 +1,3 @@
-// Insights page — four D3 charts driven by TV_DATA (assets/js/data.js)
-
 const TECH_COLOR = {
   "LCD": "#71717A",
   "LCD (LED)": "#18181B",
@@ -36,9 +34,7 @@ function onResize(fn) {
   });
 }
 
-/* =========================================================
-   1. BAR CHART — avg Star rating vs avg CEC by technology
-   ========================================================= */
+/* BAR CHART — avg Star rating vs avg CEC by technology */
 (function barChart() {
   const svgEl = document.getElementById("chart-bar");
   const data = TV_DATA.techStats; // [{tech, avgStar, avgCEC, count}]
@@ -106,7 +102,7 @@ function onResize(fn) {
         .attr("height", d => innerH - y(d[metric])))
     )
       .on("mousemove", (event, d) => {
-        showTooltip(event, `<strong>${d.tech}</strong><br>Star rating: ${d.avgStar.toFixed(2)} / 5<br>CEC: ${d.avgCEC.toFixed(0)} kWh/year<br>${d.count} models`);
+        showTooltip(event, `<strong>${d.tech}</strong><br>Star rating: ${d.avgStar.toFixed(2)}<br>CEC: ${d.avgCEC.toFixed(0)} kWh/year<br>${d.count} models`);
         moveTooltip(event);
       })
       .on("mouseleave", hideTooltip);
@@ -142,9 +138,7 @@ function onResize(fn) {
   onResize(render);
 })();
 
-/* =========================================================
-   2. SCATTER PLOT — screen size vs CEC, colored by technology, zoom/pan
-   ========================================================= */
+/* SCATTER PLOT — screen size vs CEC, colored by technology, zoom/pan */
 (function scatterChart() {
   const svgEl = document.getElementById("chart-scatter");
   const allData = TV_DATA.scatter; // [{s, c, t, m, b}] — full dataset, 9,259 points
@@ -214,7 +208,7 @@ function onResize(fn) {
       .attr("x", margin.left + innerW / 2)
       .attr("y", height - 6)
       .style("font-size", "0.82rem")
-      .text("Screen size (inches)");
+      .text("Screen size (cm)");
 
     svg.append("text")
       .attr("class", "axis")
@@ -231,12 +225,12 @@ function onResize(fn) {
     gDots.selectAll("circle")
       .data(data)
       .join("circle")
-      .attr("class", "scatter-dot") // radius comes from CSS (insights.css), not set here
+      .attr("class", "scatter-dot")
       .attr("cx", d => xBase(d.s))
       .attr("cy", d => yBase(d.c))
       .attr("fill", d => TECH_COLOR[d.t] || "#999")
       .on("mousemove", (event, d) => {
-        showTooltip(event, `<strong>${d.m}</strong><br>${d.b}<br>${d.s}" &middot; ${d.c} kWh/yr<br>${d.t}`);
+        showTooltip(event, `<strong>${d.m}</strong><br>${d.b}<br>${d.s} cm &middot; ${d.c} kWh/yr<br>${d.t}`);
         moveTooltip(event);
       })
       .on("mouseleave", hideTooltip);
@@ -251,9 +245,6 @@ function onResize(fn) {
         const yz = zoomTransform.rescaleY(yBase);
         drawAxes(xz, yz);
         gDots.attr("transform", zoomTransform);
-        // One CSS variable update instead of 9,000+ per-circle attr() calls —
-        // the --zoom-k var (used by .scatter-dot's r: calc(...) in insights.css)
-        // keeps every dot's visual size constant while zoomed.
         svgEl.style.setProperty("--zoom-k", zoomTransform.k);
       });
 
@@ -275,9 +266,7 @@ function onResize(fn) {
   onResize(render);
 })();
 
-/* =========================================================
-   3. LOLLIPOP CHART — top 8 brands by average star rating
-   ========================================================= */
+/*  LOLLIPOP CHART — top 8 brands by average star rating */
 (function brandChart() {
   const svgEl = document.getElementById("chart-brand");
   const data = TV_DATA.brandStats; // sorted desc by avgStar already
@@ -418,9 +407,7 @@ function onResize(fn) {
   onResize(render);
 })();
 
-/* =========================================================
-   4. LINE CHART — average active-mode power by release year
-   ========================================================= */
+/* LINE CHART — average active-mode power by release year */
 (function lineChart() {
   const svgEl = document.getElementById("chart-line");
   const select = document.getElementById("line-select");

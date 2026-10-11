@@ -1,8 +1,3 @@
-/* ==========================================================================
-   INSIGHTS PAGE STYLING (MINIMALIST & ELEGANT)
-   Data-visualisation styling for D3.js charts
-   ========================================================================== */
-
 :root {
   --tech-lcd: #71717A;
   --tech-led: #18181B;
@@ -170,7 +165,8 @@
 }
 
 /* Axes & Grids */
-.axis path, .axis line {
+.axis path,
+.axis line {
   stroke: var(--border-default);
   opacity: 0.9;
 }
@@ -323,6 +319,7 @@
     padding: 24px 20px;
     margin-bottom: 28px;
   }
+
   .chart-head h2 {
     font-size: 1.25rem;
   }
@@ -334,50 +331,63 @@
     border-radius: var(--radius-md);
     margin-bottom: 22px;
   }
+
   .chart-head h2 {
     font-size: 1.15rem;
   }
+
   .chart-head p {
     font-size: 0.88rem;
     margin-bottom: 14px;
   }
+
   .chart-controls {
     gap: 8px;
     margin-bottom: 14px;
   }
+
   .chart-controls label {
     font-size: 0.84rem;
   }
+
   .chart-controls select {
     width: 100%;
     font-size: 0.88rem;
     padding: 8px 10px;
   }
+
   .chip {
     padding: 6px 12px;
     font-size: 0.82rem;
   }
+
   .legend {
     gap: 10px;
     font-size: 0.8rem;
     margin-bottom: 10px;
   }
+
   .chart-footnote {
     font-size: 0.8rem;
     margin-top: 12px;
   }
+
   .brand-detail {
     padding: 14px 14px;
   }
+
   .brand-detail h3 {
     font-size: 0.92rem;
   }
+
   .brand-detail li {
     font-size: 0.84rem;
   }
+
   .lollipop-label {
     font-size: 0.78rem;
   }
+
   #scatter-reset {
     width: 100%;
   }
